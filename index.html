@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cuy University</title>
+</head>
+<body>
+    <div class="container" >
+        <nav>
+            <a onclick="reload()" id="home">HOME</a>
+            <a id="modedark" onclick="darkMode()">MODE DARK</a>
+            <a id="modePink" onclick="pinkMode()">MODE PINK</a>
+        </nav>
+        <h1>SESI 6 CUY UNIVERSITY</h1>
+        <p class="info" id="info"></p>
+    </div>
+    <!-- initializing function script -->
+    <script type="application/javascript">
+        let body = document.body;
+        const darkLimit = 5;
+        let darkCounter =0;
+
+        let darkRemainingLeft;
+        let info = document.getElementById('info')
+        let modedark = document.getElementById('modedark')
+        // document.body.classList('default')
+        function darkMode(){
+            
+            if(darkRemainingLeft == 1){
+                info.textContent =" Jatah Fitur DarkMode Anda Sudah Habis"
+                modedark.style.display = "none"
+                home.textContent ="Restart"
+                return;
+            }
+
+            darkCounter +=1
+            darkRemainingLeft = darkLimit-darkCounter;
+        //    render ke info
+            info.textContent =`Dark mode dipakai ${darkCounter}x, tersisa ${darkRemainingLeft}x`
+           
+             body.classList.toggle('dark')
+            if( darkCounter %2==0){
+                modedark.textContent = "MODE DARK"
+            }else if( darkCounter %2==1){
+                modedark.textContent = "MODE DEFAULT"
+            }
+
+        }
+
+
+        // pink mode
+        const pinkLimit = 5;
+        let pinkCounter = 0;
+        let pinkRemainingLeft;
+        let modePink = document.getElementById('modePink')
+        function pinkMode(){
+            
+            if(pinkRemainingLeft == 1){
+                info.textContent =" Jatah Fitur PinkMode Anda Sudah Habis"
+                modePink.style.display = "none"
+                home.textContent ="Restart"
+
+                return;
+            }
+
+            pinkCounter +=1
+            pinkRemainingLeft = pinkLimit-pinkCounter;
+        //    render ke info
+            info.textContent =`Pink mode dipakai ${pinkCounter}, tersisa ${pinkRemainingLeft}`
+           
+             body.classList.toggle('pink')
+            if(pinkCounter %2== 0){
+                modePink.textContent = "MODE PINK"
+            }else {
+                modePink.textContent = "MODE DEFAULT"
+            }
+        }
+
+        
+        function reload(){
+            location.reload();
+        }
+    </script>
+</body>
+</html>
